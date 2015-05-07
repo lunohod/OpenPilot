@@ -372,6 +372,12 @@ QString SetupWizard::getSummaryText()
     case INPUT_DSM:
         summary.append(tr("Spektrum Satellite"));
         break;
+    case INPUT_HOTTSUMD:
+        summary.append(tr("Graupner HoTT (SUMD)"));
+        break;
+    case INPUT_HOTTSUMH:
+        summary.append(tr("Graupner HoTT (SUMH)"));
+        break;
     default:
         summary.append(tr("Unknown"));
     }

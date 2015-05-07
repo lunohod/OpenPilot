@@ -161,6 +161,9 @@ void InputChannelForm::groupUpdated()
     case ManualControlSettings::CHANNELGROUPS_GCS:
         count = GCSReceiver::CHANNEL_NUMELEM;
         break;
+    case ManualControlSettings::CHANNELGROUPS_HOTTSUM:
+        count = 32;
+        break;
     case ManualControlSettings::CHANNELGROUPS_NONE:
         count = 0;
         break;

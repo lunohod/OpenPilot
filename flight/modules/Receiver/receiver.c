@@ -558,6 +558,9 @@ static bool updateRcvrActivityCompare(uint32_t rcvr_id, struct rcvr_activity_fsm
             case MANUALCONTROLSETTINGS_CHANNELGROUPS_OPLINK:
                 group = RECEIVERACTIVITY_ACTIVEGROUP_OPLINK;
                 break;
+            case MANUALCONTROLSETTINGS_CHANNELGROUPS_HOTTSUM:
+                group = RECEIVERACTIVITY_ACTIVEGROUP_HOTTSUM;
+                break;
             default:
                 PIOS_Assert(0);
                 break;

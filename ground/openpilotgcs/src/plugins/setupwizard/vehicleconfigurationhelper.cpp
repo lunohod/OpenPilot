@@ -165,6 +165,12 @@ void VehicleConfigurationHelper::applyHardwareConfiguration()
         case VehicleConfigurationSource::INPUT_DSM:
             data.CC_FlexiPort = HwSettings::CC_FLEXIPORT_DSM;
             break;
+		case VehicleConfigurationSource::INPUT_HOTTSUMD:
+            data.CC_FlexiPort = HwSettings::CC_FLEXIPORT_HOTTSUMD;
+			break;
+		case VehicleConfigurationSource::INPUT_HOTTSUMH:
+            data.CC_FlexiPort = HwSettings::CC_FLEXIPORT_HOTTSUMH;
+			break;
         default:
             break;
         }
@@ -852,6 +858,10 @@ void VehicleConfigurationHelper::applyManualControlDefaults()
         break;
     case VehicleConfigurationSource::INPUT_DSM:
         channelType = ManualControlSettings::CHANNELGROUPS_DSMFLEXIPORT;
+        break;
+    case VehicleConfigurationSource::INPUT_HOTTSUMD:
+    case VehicleConfigurationSource::INPUT_HOTTSUMH:
+        channelType = ManualControlSettings::CHANNELGROUPS_HOTTSUM;
         break;
     default:
         break;

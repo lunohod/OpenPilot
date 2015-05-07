@@ -516,6 +516,31 @@ void PIOS_Board_Init(void)
         }
 #endif /* PIOS_INCLUDE_DSM */
         break;
+    case HWSETTINGS_CC_MAINPORT_HOTTSUMD:
+    case HWSETTINGS_CC_MAINPORT_HOTTSUMH:
+#if defined(PIOS_INCLUDE_HSUM)
+        {
+            enum pios_hsum_proto proto;
+            proto = (hwsettings_cc_mainport == HWSETTINGS_CC_MAINPORT_HOTTSUMD) ? PIOS_HSUM_PROTO_SUMD : PIOS_HSUM_PROTO_SUMH;
+
+            uint32_t pios_usart_hsum_id;
+            if (PIOS_USART_Init(&pios_usart_hsum_id, &pios_usart_hsum_main_cfg)) {
+                PIOS_Assert(0);
+            }
+
+            uint32_t pios_hsum_id;
+            if (PIOS_HSUM_Init(&pios_hsum_id, &pios_usart_com_driver, pios_usart_hsum_id, proto)) {
+                PIOS_Assert(0);
+            }
+
+            uint32_t pios_hsum_rcvr_id;
+            if (PIOS_RCVR_Init(&pios_hsum_rcvr_id, &pios_hsum_rcvr_driver, pios_hsum_id)) {
+                PIOS_Assert(0);
+            }
+            pios_rcvr_group_map[MANUALCONTROLSETTINGS_CHANNELGROUPS_HOTTSUM] = pios_hsum_rcvr_id;
+        }
+#endif /* PIOS_INCLUDE_HSUM */
+        break;
     case HWSETTINGS_CC_MAINPORT_DEBUGCONSOLE:
 #if defined(PIOS_INCLUDE_COM)
 #if defined(PIOS_INCLUDE_DEBUG_CONSOLE)
@@ -672,6 +697,30 @@ void PIOS_Board_Init(void)
         }
 #endif /* PIOS_INCLUDE_DSM */
         break;
+    case HWSETTINGS_CC_FLEXIPORT_HOTTSUMD:
+    case HWSETTINGS_CC_FLEXIPORT_HOTTSUMH:
+#if defined(PIOS_INCLUDE_HSUM)
+        {
+            enum pios_hsum_proto proto;
+            proto = (hwsettings_cc_mainport == HWSETTINGS_CC_FLEXIPORT_HOTTSUMD) ? PIOS_HSUM_PROTO_SUMD : PIOS_HSUM_PROTO_SUMH;
+
+            uint32_t pios_usart_hsum_id;
+            if (PIOS_USART_Init(&pios_usart_hsum_id, &pios_usart_hsum_flexi_cfg)) {
+                PIOS_Assert(0);
+            }
+
+            uint32_t pios_hsum_id;
+            if (PIOS_HSUM_Init(&pios_hsum_id, &pios_usart_com_driver, pios_usart_hsum_id, proto)) {
+                PIOS_Assert(0);
+            }
+
+            uint32_t pios_hsum_rcvr_id;
+            if (PIOS_RCVR_Init(&pios_hsum_rcvr_id, &pios_hsum_rcvr_driver, pios_hsum_id)) {
+                PIOS_Assert(0);
+            }
+            pios_rcvr_group_map[MANUALCONTROLSETTINGS_CHANNELGROUPS_HOTTSUM] = pios_hsum_rcvr_id;
+        }
+#endif /* PIOS_INCLUDE_HSUM */
     case HWSETTINGS_CC_FLEXIPORT_DEBUGCONSOLE:
 #if defined(PIOS_INCLUDE_COM)
 #if defined(PIOS_INCLUDE_DEBUG_CONSOLE)
